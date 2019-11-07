@@ -1,7 +1,7 @@
 import React from 'react';
+import './style.css'
 
 const toastmessages = (props) =>{
-    console.log(props.msg);
     return(
         <div className="toast">{props.msg}</div>
     )

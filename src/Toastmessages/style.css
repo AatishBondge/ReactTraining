@@ -1,0 +1,18 @@
+.toast{
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translate(-50%, 0);
+    width: 400px;
+    text-align: center;
+    background-color: #7ffe01;
+    padding: 20px 0;
+    border-radius: 30px;
+    animation-name: toastDown;
+    animation-duration: 2s;
+  }
+  
+  @keyframes toastDown{
+    from{bottom: 100%}
+    to{bottom: 90%}
+  }
