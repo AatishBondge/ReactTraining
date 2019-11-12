@@ -1,7 +1,8 @@
 import React ,{Component} from 'react';
 import './style.css';
 import axios from 'axios';
-import Toastmessages from '../Toastmessages';
+import Toastmessages from './Toastmessages';
+
 export class loginpage extends Component{
     constructor(props){
         super(props) 
@@ -20,7 +21,7 @@ export class loginpage extends Component{
     }
     inputValidation(){
         let isValid = false;
-        if(/^\S*$/.test(this.state.userName) && /^\S*$/.test(this.state.passWord)){
+        if(/^\S*$/.test(this.state.userName) && /^\S*$/.test(this.state.passWord) && this.state.userName !== '' && this.state.passWord !== ''){
             isValid = true
         }
         return isValid;
@@ -43,13 +44,15 @@ export class loginpage extends Component{
             })
             .then(response => {
               if(response.status === 200 && isValid){
+                  console.log(response);
                 logStatus = 'Log In Succesfull !';
                 this.setState({loggedInMessage: logStatus})
                 this.setState({showComponent : true})
+                this.props.loginStatus();
               }
             })
             .catch( error => {
-                isValid ? logStatus = 'Log In failed please try again' : logStatus = 'Space not allowed !'
+                isValid ? logStatus = 'Log In failed please try again' : logStatus = 'Feilds Required or Space not allowed !'
                 this.setState({loggedInMessage: logStatus})
                 this.setState({showComponent : true})
             })
