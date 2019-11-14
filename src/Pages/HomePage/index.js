@@ -1,15 +1,16 @@
 import React from 'react';
+import axios from 'axios';
 import './style.css';
-import axios from 'axios'
-import Carousel from './Carousel'
+import Carousel from './Carousel';
 
 export class homePage extends React.Component{
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             products : [],
-        }
+        };
     }
+
     componentDidMount(){
         axios({
             method: 'POST',
@@ -23,24 +24,22 @@ export class homePage extends React.Component{
             }
             })
             .then(response => {
-                let data = response.data.response.records.map((elem, ind) => {
-                 let sku = elem.compositeProducts[0]
+                const data = response.data.response.records.map((elem) => {
+                 const sku = elem.compositeProducts[0];
                     return sku;
-                })
-                this.setState({products : data})
-              })
-              .catch( error => {
-                console.log(error);
-              })        
+                });
+                this.setState({products : data});
+              });        
     }
 
     render(){
+    const destructuredState = this.state;
         return(
             <div className="homePage">
             <h1>HomePage</h1>
-            <Carousel products={this.state.products}/>
+            <Carousel products={destructuredState.products}/>
             </div>
-        )
+        );
     }
 }
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import './style.css'
+import './style.css';
 
-const toastmessages = (props) =>{
+const toastmessages = ({msg}) =>{
     return(
-        <div className="toast">{props.msg}</div>
-    )
-}
+        <div className="toast">{msg}</div>
+    );
+};
 export default toastmessages;

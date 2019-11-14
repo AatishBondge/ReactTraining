@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import './Carousel.css';
 import Card from './Card';
@@ -5,52 +6,57 @@ import Card from './Card';
 
 class Carousel extends React.Component{
     constructor(props){
-        super(props)
+        super(props);
         this.state={
-            prod : [],
             left : 0,
-        }
-        this.prevSlide = this.prevSlide.bind(this);
-        this.nextSlide = this.nextSlide.bind(this);
+        };
     }
-    nextSlide = () => {
-        this.refs.prev.removeAttribute("disabled");
-        if (this.state.left === -1560){
-            this.refs.next.setAttribute("disabled", "disabled");            
-        }else{
-            this.setState({left : this.state.left - 260})
-        }
-        console.log(this.state.left);
-    }
-    prevSlide(){
-        this.refs.next.removeAttribute("disabled");
-        this.refs.next.setAttribute("enabled", "enabled");
-        if (this.state.left === 0){
-            this.refs.prev.setAttribute("disabled", "disabled");            
-        }else{
-            this.setState({left : this.state.left + 260})
-        }
-        console.log(this.state.left);
 
+    nextSlide = () => {
+        const destructuredState = this.state;
+        const destructuredProps = this.props;
+        this.prev.removeAttribute("disabled");
+        if (destructuredState.left === -(destructuredProps.products.length - 4)*260){
+            this.next.setAttribute("disabled", "disabled");            
+        }else{
+            this.setState({left : destructuredState.left - 260});
+        }
+    }
+    
+    prevSlide= () =>{
+        const destructuredState = this.state;
+        this.next.removeAttribute("disabled");
+        this.next.setAttribute("enabled", "enabled");
+        if (destructuredState.left === 0){
+            this.prev.setAttribute("disabled", "disabled");            
+        }else{
+            this.setState({left : destructuredState.left + 260});
+        }
     }
 
     render(){
+        const destructuredState = this.state;
+        const destructuredProps = this.props;
         const style = {
-            'left' : this.state.left+'px'
-        }
-        let AllProducts = this.props.products.map((item, ind) => {            
-            return <Card key={ind} data={item}>{item.description}</Card>
-        })
+            // eslint-disable-next-line prefer-template
+            'left' : destructuredState.left + 'px'
+        };
+
+        const AllProducts = destructuredProps.products.map((item, ind) => {            
+            // eslint-disable-next-line react/no-array-index-key
+            return <Card key={ind} data={item}>{item.description}</Card>;
+        });
         
         return(
-            <>
-            <button id='prev' className='arrows' onClick={this.prevSlide} ref="prev">&#10094;</button>
+            // eslint-disable-next-line react/jsx-fragments
+            <React.Fragment>
+            <button id='prev' className='arrows' onClick={this.prevSlide} ref={(ref) => {this.prev = ref;}}>&#10094;</button>
             <div className='carouselContainer'>
                 <div className='prodList' style={style}>{AllProducts}</div>
             </div>
-            <button id='next' className='arrows' onClick={this.nextSlide} ref='next'>&#10095;</button>
-            </>
-        )
+            <button id='next' className='arrows' onClick={this.nextSlide} ref={(ref) => {this.next = ref;}}>&#10095;</button>
+            </React.Fragment>
+        );
     }
 }
 export default Carousel;
