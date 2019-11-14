@@ -1,7 +1,3 @@
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable react/button-has-type */
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React ,{Component} from 'react';
 import axios from 'axios';
 import './style.css';
@@ -51,7 +47,6 @@ export class loginpage extends Component{
               }
             })
             .catch( () => {
-                // eslint-disable-next-line no-unused-expressions
                 isValid ? logStatus = 'Log In failed please try again' : logStatus = 'Feilds Required or Space not allowed !';
                 this.setState({loggedInMessage: logStatus});
                 this.setState({showComponent : true});
@@ -85,11 +80,11 @@ export class loginpage extends Component{
                             <input type="password" className="formControl" name="password" ref={(ref) => {this.passWord = ref;}} onChange={this.handleChange}/>                
                         </div>
                         <div className="formGroup blockLevel">
-                            <button className="submit" onClick={(e) => {this.onSubmit();}}>Submit</button>
+                            <button className="submit" onClick={() => {this.onSubmit();}}>Submit</button>
                         </div>
                     </div>
                 </div>
-                <div className="imageContainer"></div>
+                <div className="imageContainer"/>
             </div>
         );
     }
