@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import './style.css';
+import './style.scss';
 import Carousel from './Carousel';
 
 export class homePage extends React.Component{

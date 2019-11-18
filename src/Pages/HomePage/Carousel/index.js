@@ -1,5 +1,5 @@
 import React from 'react';
-import './Carousel.css';
+import './Carousel.scss';
 import Card from './Card';
 
 class Carousel extends React.Component{

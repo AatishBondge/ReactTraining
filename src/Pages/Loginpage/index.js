@@ -1,6 +1,8 @@
 import React ,{Component} from 'react';
+import qs from 'query-string';
 import axios from 'axios';
-import './style.css';
+import {NavLink} from 'react-router-dom';
+import './style.scss';
 
 import Toastmessages from './Toastmessages';
 
@@ -65,12 +67,14 @@ export class loginpage extends Component{
 
     render() {
         const destructuredState = this.state;
+        console.log(qs.parse(this.props.location.search).name);
         return (
             <div className="loginPageContainer">
             {destructuredState.showComponent ? <Toastmessages msg={destructuredState.loggedInMessage}/> : null}
                 <div className="loginPage">                            
                     <div className="loginForm" >
                         <h1>Log In</h1>
+                        <NavLink to="/login?name=Aatish">Refresh</NavLink>
                         <div className="formGroup">
                             <label htmlFor="userEmail" className="blockLevel labels">Email : </label>
                             <input type="text" className="formControl" name="username" ref={(ref) => {this.userName = ref;}} onChange={this.handleChange} required/>
