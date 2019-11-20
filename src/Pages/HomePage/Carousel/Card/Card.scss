@@ -1,35 +1,41 @@
-.outerCard{
-    width: 250px;
+.outerCard {
+    width  : 250px;
     display: inline-block;
     padding: 5px;
 }
-.card{
-    width: 100%;
-    text-align:  center;
+
+.card {
+    width     : 100%;
+    text-align: center;
     box-shadow: 1px 1px 5px;
-    padding: 10px 0;
+    padding   : 10px 0;
 }
-.prodImage{
-    width: 90%;
+
+.prodImage {
+    width : 90%;
     height: 200px;
 }
-.partNumber{
+
+.partNumber {
     font-size: 10px;
-    color: darkgray;
+    color    : darkgray;
 }
-.button{
-    width: 100px;
-    height: 40px;
-    color: #ffffff;
+
+.button {
+    width           : 100px;
+    height          : 40px;
+    color           : #ffffff;
     background-color: #273142;
-    border: none;
-    border-radius: 4px;
+    border          : none;
+    border-radius   : 4px;
 }
-.nameTag{
+
+.nameTag {
     font-weight: bold;
-    height: 50px;
-    font-size: 15px;
+    height     : 50px;
+    font-size  : 15px;
 }
-.priceTag{
+
+.priceTag {
     font-size: 20px
 }

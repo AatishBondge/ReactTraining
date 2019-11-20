@@ -29,7 +29,7 @@ const withSearch = (WrappedComponent) => {
             return (
               <div>
                 <div>
-                  <input
+                  <input className = 'searchInput'
                     onChange={this.handleSearch}
                     value={searchTerm}
                     type="text"
