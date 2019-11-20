@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './Carousel.scss';
 import Card from './Card';
 
@@ -55,4 +56,11 @@ class Carousel extends React.Component {
         );
     }
 }
-export default Carousel;
+
+const mapStateToProps = (state) => {
+    return {
+        products: state.products
+    };
+};
+
+export default connect(mapStateToProps)(Carousel);

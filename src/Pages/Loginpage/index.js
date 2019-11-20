@@ -49,8 +49,7 @@ export class Loginpage extends Component {
                     this.getUserData(access_token, id);
                 }
             })
-            .catch((error) => {
-                console.log(error);
+            .catch(() => {
                 isValid ? logStatus = 'Log In failed please try again' : logStatus = 'Feilds Required or Space not allowed !';
                 this.setState({ loggedInMessage: logStatus, showComponent: true });
             });
@@ -81,10 +80,8 @@ export class Loginpage extends Component {
             .then(response => {
                 const { profile_user } = response.data;
                 setUserData(profile_user);
-            })
-            .catch((err) => {
-                console.log(err);
             });
+
     }
 
     render() {

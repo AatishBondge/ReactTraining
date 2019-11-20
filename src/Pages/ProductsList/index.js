@@ -8,9 +8,10 @@ const ProductList = ({ products }) => {
   });
   return (
     <div>
-      <h1>{AllProducts}</h1>
+      {AllProducts}
     </div>
   );
 };
+
 
 export default ProductList;
