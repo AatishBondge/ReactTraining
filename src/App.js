@@ -1,67 +1,52 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './App.css';
 import axios from 'axios';
-import Loginpage  from './loginpage/loginpage'
-import Toastmessages from './toastmessages/toastmessages';
+import { connect } from 'react-redux';
+import './App.scss';
+import Routing from './ReactRouter/ReactRouter';
 
-
-export class App extends React.Component{
-  constructor(props){
-    super(props)
+class App extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      loggedInMessage : '',
-      showComponent: false
-    }
+    };
   }
 
-  onSubmit = (userName, password) => {   
-    var logStatus = ''; 
-    if (/^[ A-Za-z0-9_@./#&+-]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(userName) || /^\d{10}$/.test(userName) || /^[ A-Za-z0-9_@./#&+-]*$/.test(userName)){
-      axios({
-        method: 'post',
-        url: 'https://dev-bepsy-api.objectedge.com/oe_commerce_api/occ/v1/oauth/login',
-        data: {
-            "username":userName,  //  trupti.kashid@objectedge.com
-            "password":password,  //  Objectedge$10
-        },
-        config: { headers: {
-                "Authorization":"Bearer YWRtaW46YWRtaW4=",
-                'Content-Type': 'application/json'
-            }
+  componentDidMount = () => {
+    const { addProducts } = this.props;
+    axios({
+      method: 'POST',
+      url: 'https://dev-bepsy-api.objectedge.com/oe_commerce_api/solr/v1/search?query=%7B%22query%22%3A%22bike%22%2C%22offset%22%3A0%2C%22limit%22%3A20%2C%22sort%22%3A%22new+asc%22%2C%22filter%22%3A%5B%22categories%3ArootCategory%2Fb_equipment%2Fb_cycling-accessories%22%2C%22siteId%3AsiteUS%22%2C%22catalog%3Abepsy_catalog_1%22%2C%22dyn_price_defaultPriceGroup%3A%5B0+TO+*%5D%22%2C%22%7B%21collapse+field%3DproductId%7D%22%5D%2C%22facet%22%3A%7B%22categories%22%3A%7B%22type%22%3A%22terms%22%2C%22field%22%3A%22categories%22%2C%22prefix%22%3A%22rootCategory%2Fb_equipment%2Fb_cycling-accessories%22%2C%22limit%22%3A100%7D%2C%22dyn_price_defaultPriceGroup%22%3A%7B%22type%22%3A%22range%22%2C%22field%22%3A%22dyn_price_defaultPriceGroup%22%2C%22domain%22%3A%7B%22excludeTags%22%3A%22PRICE%22%7D%2C%22start%22%3A0%2C%22end%22%3A7000%2C%22gap%22%3A1000%7D%2C%22type%22%3A%7B%22type%22%3A%22terms%22%2C%22field%22%3A%22type%22%2C%22limit%22%3A100%7D%2C%22brand%22%3A%7B%22type%22%3A%22terms%22%2C%22field%22%3A%22brand%22%2C%22limit%22%3A100%7D%7D%7D',
+      config: {
+        headers: {
+          'Bepsy-CatalogId': 'bepsy_catalog_1',
+          'Bepsy-PricelistId': 'defaultPriceGroup',
+          'Bepsy-SiteId': 'siteUS'
         }
-        })
-        .then(response => {
-          if(response.status === 200){
-            logStatus = 'Log In Succesfull !';
-            this.setState({loggedInMessage: logStatus})
-          }
-        })
-        .catch( error => {
-            logStatus = 'Log In failed please try again';
-            this.setState({loggedInMessage: logStatus})
-        })
-        this.setState({showComponent : true})
-    }
+      }
+    })
+      .then(response => {
+        const data = response.data.response.records.map((elem) => {
+          const sku = elem.compositeProducts[0];
+          return sku;
+        });
+        addProducts(data);
+
+      });
   }
-  showToast = ()=>{
-    //{this.state.showComponent ? <Toastmessages msg={this.state.loggedInMessage}/> : null}
-    return <Toastmessages msg={this.state.loggedInMessage}/>       
-  }
-  render(){
-    let toastmessages = null;     
-    if(this.state.showComponent){
-      toastmessages= this.showToast();
-    }
-    return(
+
+  render() {
+    return (
       <div className="mainContainer">
-      {toastmessages}
-      <Loginpage isLogin={this.onSubmit}/>
-      <div className="imageContainer">
-      
+        <Routing />
       </div>
-    </div>
     );
   }
 }
-export default App;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addProducts: (data) => { dispatch({ type: 'ADD_PRODUCTS', payload: data }); }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(App);

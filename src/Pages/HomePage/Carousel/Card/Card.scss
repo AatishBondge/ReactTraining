@@ -1,0 +1,40 @@
+.outerCard {
+    width  : 250px;
+    display: inline-block;
+    padding: 5px;
+}
+
+.card {
+    width     : 100%;
+    text-align: center;
+    box-shadow: 1px 1px 5px;
+    padding   : 10px 0;
+}
+
+.prodImage {
+    width : 90%;
+    height: 200px;
+}
+
+.partNumber {
+    font-size: 10px;
+    color    : darkgray;
+}
+
+.button {
+    width           : 100px;
+    height          : 40px;
+    color           : #ffffff;
+    background-color: #273142;
+    border          : none;
+    border-radius   : 4px;
+}
+
+.nameTag {
+    font-weight: bold;
+    height     : 50px;
+}
+
+.priceTag {
+    font-size: 20px
+}

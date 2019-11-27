@@ -1,0 +1,59 @@
+.loginPageContainer {
+    display: flex;
+    width  : 100%;
+}
+
+.loginPage {
+    position: relative;
+    height  : 100vh;
+    width   : 30%;
+}
+
+.imageContainer {
+    width           : 70%;
+    height          : 100vh;
+    background-image: url('../../login.jpg');
+    background-size : cover;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.formControl {
+    font-size    : 14px;
+    height       : 36px;
+    width        : 100%;
+    padding      : 6px 12px;
+    border-radius: 4px;
+    border       : solid 1px #dfe3e9;
+}
+
+.loginForm {
+    width    : 80%;
+    position : absolute;
+    top      : 50%;
+    left     : 50%;
+    transform: translate(-50%, -50%)
+}
+
+.labels {
+    display      : block;
+    font-size    : 14px;
+    margin-bottom: 10px;
+    font-weight  : 500;
+}
+
+.submit {
+    border          : 1px solid transparent;
+    border-radius   : 4px;
+    padding         : 6px 12px;
+    background-color: #e41e26;
+    color           : white;
+    width           : 200px;
+    height          : 40px;
+}
+
+.form-control {
+    border: solid 1px #dfe3e9;
+}

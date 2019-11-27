@@ -1,0 +1,28 @@
+$menuColor : #ffe4c4;
+
+.navBar {
+    display        : flex;
+    padding        : 10px 0;
+    justify-content: space-around;
+    text-align     : center;
+    background     : darkgray;
+    ;
+}
+
+.navMenu {
+    text-decoration : none;
+    display         : inline-block;
+    width           : 150px;
+    padding         : 10px 0;
+    background-color: $menuColor;
+}
+
+.logout {
+    margin          : 10px 0;
+    width           : 100px;
+    border-radius   : 5px;
+    height          : 30px;
+    outline         : none;
+    border          : none;
+    background-color: crimson;
+}

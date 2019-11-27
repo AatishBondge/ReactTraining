@@ -1,0 +1,31 @@
+.prodList {
+	position: absolute;
+	left    : 0px;
+	width   : 2600px;
+}
+
+.carouselContainer {
+	width   : 1040px;
+	position: relative;
+	margin  : auto;
+	overflow: hidden;
+	height  : inherit;
+}
+
+#prev {
+	left: 10%;
+}
+
+#next {
+	right: 10%;
+}
+
+.arrows {
+	position        : absolute;
+	top             : 25%;
+	border          : none;
+	font-size       : 45px;
+	background-color: transparent;
+	border-radius   : 100px 5px;
+	outline         : none;
+}
